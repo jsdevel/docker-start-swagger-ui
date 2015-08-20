@@ -11,7 +11,7 @@ Docker currently doesn't support build time parameters to docker files [see #doc
 
 ```sh
 export SWAGGER_UI_ENDPOINT=https://github.com
-cat Dockerfile | envsubst | docker build -t swagger-ui ./
+cat Dockerfile | envsubst | docker build -t swagger-ui -
 ```
 
 You can then run the image as follows:
