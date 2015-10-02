@@ -1,23 +1,16 @@
-docker-swagger-ui
+start-swagger-ui
 ===========================
-> Swagger UI in a docker container with an EVN driven endpoint at build time.
+> Start swagger-ui at a specified endpoint.
 
-This allows you to tailor your swagger-ui setup from your CI server of choice I.E.
-Jenkins or Travis.
+This allows you to tailor your swagger-ui setup to point to a specific endpoint
+rather than the default petstore api.
 
 ## Usage
 
-Docker currently doesn't support build time parameters to docker files [see #docker/docker/issues/14634](https://github.com/docker/docker/issues/14634).  For now, it is necessary to build images with this project as follows:
+Simply pass the endpoint as an argument to the container during run I.E.
 
 ```sh
-export SWAGGER_UI_ENDPOINT=https://github.com
-cat Dockerfile | envsubst | docker build -t swagger-ui -
+docker run -d -p 80:80 jsdevel/start-swagger-ui http://localhost:9059/v1/api-docs
 ```
 
-You can then run the image as follows:
-
-```sh
-sudo docker run -p 80:80 -t swagger-ui
-```
-
-Swagger will now display the value of `SWAGGER_UI_ENDPOINT` during build in the UI.
+Swagger will now display `http://localhost:9059/v1/api-docs` in the UI.

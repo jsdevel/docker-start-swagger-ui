@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+  echo "You must provide an endpoint!"
+  exit 1
+fi
+
+sed -i'' "s|http://petstore.swagger.io/v2/swagger.json|$1|" /swagger/index.html
+
+nginx.old
